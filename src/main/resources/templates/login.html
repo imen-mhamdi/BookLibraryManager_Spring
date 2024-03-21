@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security Example</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Ajout de cette ligne pour afficher les éléments en colonne */
+        }
+
+        .message-container {
+            text-align: center;
+        }
+
+        .success-message {
+            color: green;
+            background-color: lightgreen;
+            padding: 10px;
+            border: 1px solid darkgreen;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: white;
+            background-color: #e74c3c;
+            padding: 10px;
+            border: 1px solid #c0392b;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Adjust the width as needed */
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <div th:if="${param.logout}" class="success-message">
+            You have been logged out.
+        </div>
+        <div th:if="${param.error}" class="error-message">
+            Invalid username and password.
+        </div>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div><label>User Name : <input type="text" name="username" /></label></div>
+        <div><label>Password: <input type="password" name="password" /></label></div>
+        <div><input type="submit" value="Sign In" /></div>
+    </form>
+</body>
+</html>

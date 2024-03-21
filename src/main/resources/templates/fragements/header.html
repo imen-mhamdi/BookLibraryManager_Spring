@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>ResearchDocsHub</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
+</head>
+
+<body>
+    <header>
+        <h2>ResearchDocsHub</h2>
+        <form  class="Sign" th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </header>
+
+</body>
+
+</html>

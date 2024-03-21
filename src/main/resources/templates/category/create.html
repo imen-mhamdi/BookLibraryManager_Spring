@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+
+
+</head>
+<body>
+    <div th:replace="fragements/header :: header"></div> 
+    <a th:href="@{/documents}" class="back-link">Back</a>
+    <form th:action="@{/categories/create}" method="post" th:object="${categoryForms}" class="create">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:field="*{name}">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
+        </div>
+
+        <div>
+            <button type="submit">Create</button>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
+<head>
+    <title>ResearchDocsHub</title>
+</head>
+
+<body>
+    <div th:replace="fragements/header :: header"></div> 
+    <a th:href="@{/documents}" class="back-link">Back</a>  
+    <a th:href="@{/authors/create}" class="add-button">Add</a>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="author : ${authors}"> <!-- Utilisez 'author' au lieu de 'Author' -->
+            <!-- Affichez les données du document -->
+            <td th:text="${author.name}"></td>
+            <td>
+                <form th:action="@{|/authors/${author.id}/edit|}" method="get" class="edit-form">
+                    <button type="submit">Edit</button>
+                </form>
+                <form th:action="@{|/authors/${author.id}/delete|}" method="post" class="delete-form">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+<head>
+    <title>ResearchDocsHub</title>
+    <style>
+        /* Contents of styles.css */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: white;
+            text-align: center;
+            color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 50px;
+        }
+
+        h2 {
+            font-size: 24px;
+            position: relative;
+            top: 25%;
+            color: black;
+        }
+
+        .Sign {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        input[type="submit"] {
+            background-color: #45a049;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 50px;
+            text-decoration: none;
+        }
+
+        .add-button {
+            padding: 10px;
+            background-color: #c2c2c2;
+            color: rgb(255, 255, 255);
+            margin: 10px;
+            margin-top: 35px;
+            margin-right: 7px;
+            text-decoration: none;
+            float: right;
+            border-radius: 5px;
+        }
+
+        #button {
+            padding: 10px;
+            background-color: #45a049;
+            color: white;
+            margin: 10px;
+            margin-top: 60px;
+            margin-left: 10px;
+            text-decoration: none;
+            float: right;
+            border-radius: 5px;
+        }
+
+        /* Rest of the styles from styles.css */
+
+        .search-container {
+            margin-top:10%;
+            margin-left: 28%;
+        }
+
+        .search-container .button-search {
+            float: 50%;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-container input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            width: 70%; /* Adjust the width as needed */
+        }
+        /* Table styles */
+        table { 
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 80px;
+    }
+    table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;}
+    th{
+    background-color: #e6e6e6;}
+
+          /* Error message styles */
+          .error {
+            color: red;
+            font-size: 12px;}
+            .delete-form {
+                display: inline-block;
+                margin-left: 5px;}
+            .edit-form {
+                display: inline-block;
+                margin-left: 5px;}
+                button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+    </style>
+</head>
+
+<body  >
+    <div th:replace="fragements/header :: header"></div> 
+    <a th:href="@{/authors}" class="add-button">authors</a>
+    <a th:href="@{/categories}" class="add-button">Type</a>
+    <a th:href="@{/documents/create}" class="add-button">Add</a>
+
+    <div class="search-container">
+        <form th:action="@{/documents/search}" method="get">
+            <input type="text" placeholder="Search by keywords..." name="keywords">
+            <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+        </form>
+    </div>    
+
+    <table  >
+        <tr>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Keywords</th>
+            <th>Date Publication</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>File</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="document : ${documents}">
+            <!-- Affichez les données du document -->
+            <td th:text="${document.title}"></td>
+            <td th:text="${document.summary}"></td>
+            <td th:text="${document.keywords}"></td>
+            <td th:text="${document.datePublication}"></td>
+            <td th:if="${document.category != null}" th:text="${document.category.name}"></td>
+            <td th:if="${document.author != null}" th:text="${document.author.name}"></td>
+                <td>
+                    <a th:if="${document.filePath != null}" th:href="@{'/documents/view/' + ${document.id}}" target="_blank">
+                        <i class="fa fa-file"></i> View File
+                    </a>
+                </td>
+
+            <td>
+                <form th:action="@{|/documents/${document.id}/edit|}" method="get" class="edit-form">
+                    <button type="submit">Edit</button>
+                </form>
+                <form th:action="@{|/documents/${document.id}/delete|}" method="post" class="delete-form">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            
+        </tr>
+    </table>
+</body>
+
+</html>

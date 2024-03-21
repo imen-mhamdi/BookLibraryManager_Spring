@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/styles.css}">
+</head>
+<body>
+    <div th:replace="fragements/header :: header"></div> 
+    <a th:href="@{/documents}" class="back-link">Back</a>  
+
+    <form th:action="@{|/documents/${documentForms.id}/edit|}" method="post" th:object="${documentForms}" class="create">
+        <h3>Update </h3>
+        <div>
+            <label for="name">title:</label>
+            <input type="text" id="title" name="title" th:field="*{title}">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></span>
+        </div>
+        <div>
+            <label for="summary">Summary:</label>
+            <input type="text" id="summary" name="summary" th:field="*{summary}">
+            <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}" class="error"></span>
+        </div>
+        <div>
+            <label for="keywords">Quantity:</label>
+            <input type="text" id="keywords" name="keywords" th:field="*{keywords}">
+            <span th:if="${#fields.hasErrors('keywords')}" th:errors="*{keywords}" class="error"></span>
+        </div>
+        <div>
+            <label for="datePublication">Date de Publication:</label>
+            <input type="date" id="datePublication" name="datePublication" th:field="*{datePublication}">
+            <span th:if="${#fields.hasErrors('datePublication')}" th:errors="*{datePublication}" class="error"></span>
+        </div>
+        
+        <div>
+            <label for="category">Type:</label>
+            <select id="category" name="category" required>
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="authors">Authors:</label>
+            <select id="authors" name="authors" required>
+                <option th:each="authors : ${authors}" th:value="${authors.id}" th:text="${authors.name}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</body>
+</html>

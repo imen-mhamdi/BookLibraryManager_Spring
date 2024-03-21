@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: white; /* Blanc */
+    text-align: center;
+    color: black; /* Noir */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour la barre de navigation */
+    position: relative;
+    height: 50px; /* Ajuster la hauteur de la barre de navigation */
+}
+
+h2 {
+
+    font-size: 24px;
+    position: relative;
+    top:25%;
+    color: black; /* Noir */
+}
+
+.Sign {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+  
+    transform: translateY(-50%);
+}
+
+input[type="submit"] {
+    background-color: #45a049; 
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+a {
+    display: inline-block;
+    margin-top:50px;
+    text-decoration: none;
+}
+
+
+.add-button {
+
+    padding: 10px;
+    background-color: #c2c2c2;
+    color: rgb(255, 255, 255);
+    margin: 10px;
+    margin-top:35px;
+    margin-right:7px;
+    text-decoration: none;
+    float: right;
+    border-radius: 5px;
+}
+
+
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    margin-top: 150px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+th{
+    background-color: #e6e6e6;
+  
+}
+
+/* Error message styles */
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.delete-form {
+    display: inline-block;
+    margin-left: 5px;
+}
+.edit-form {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+
+.create {
+    background-color: #ebebeb;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    position: absolute;
+    top: 25%;
+    left:30%;
+}
+input,
+select,
+button {
+width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: #ff0000;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    background-color: #ff5555; /* Rouge */
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 35px;
+    margin-left: 15px;
+}

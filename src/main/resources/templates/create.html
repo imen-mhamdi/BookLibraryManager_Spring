@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div th:replace="fragements/header :: header"></div> 
+    <a th:href="@{/documents}" class="back-link">Back</a>  
+
+    <form th:action="@{/documents/create}" method="post" th:object="${documentForms}" class="create" enctype="multipart/form-data">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" th:field="*{title}">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></span>
+        </div>
+        <div>
+            <label for="summary">summary:</label>
+            <input type="text" id="summary" name="summary" th:field="*{summary}">
+            <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}" class="error"></span>
+        </div>
+        <div>
+            <label for="keywords">keywords:</label>
+            <input type="text" id="keywords" name="keywords" th:field="*{keywords}">
+            <span th:if="${#fields.hasErrors('keywords')}" th:errors="*{keywords}" class="error"></span>
+        </div>
+        <div>
+            <label for="datePublication">Date Publication:</label>
+            <input type="date" id="datePublication" name="datePublication" th:field="*{datePublication}">
+            <span th:if="${#fields.hasErrors('datePublication')}" th:errors="*{datePublication}" class="error"></span>
+        </div>
+        <div>
+            <label for="category">Type:</label>
+            <select id="category" name="category" th:field="*{category.id}" required>
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}">
+                </option>
+            </select>
+        </div>
+
+        <div>
+            <label for="author">Author:</label>
+            <select id="author" name="author" th:field="*{author.id}" required>
+                <option th:each="auth : ${authors}" th:value="${auth.id}" th:text="${auth.name}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="file">Fichier :</label>
+            <input type="file" id="file" name="file" th:field="*{file}" accept=".pdf, .doc, .docx" />
+            <span th:if="${#fields.hasErrors('file')}" th:errors="*{file}" class="error"></span>
+        </div>
+        <div>
+            <button type="submit">Create</button>
+        </div>
+    </form>
+
+</body>
+</html>
